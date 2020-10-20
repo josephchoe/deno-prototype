@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-echo "Removing app.bundle.js file..."
-rm -f ./public/app.bundle.js
+echo "Removing dist directory..."
+rm -rf dist
+
+echo "Copying public to dist..."
+cp -R ./public ./dist
 
 echo "Compiling app.js..."
-deno bundle ./src/app.js ./public/app.bundle.js
+deno bundle ./src/app.js ./dist/app.bundle.js
 
-python3 -m http.server 1234 --directory ./public
+python3 -m http.server 1234 --directory ./dist
