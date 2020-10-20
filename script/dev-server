@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-python3 -m http.server 8000 --directory ./public
+echo "Removing app.bundle.js file..."
+rm -f ./public/app.bundle.js
+
+echo "Compiling app.js..."
+deno bundle ./src/app.js ./public/app.bundle.js
+
+python3 -m http.server 1234 --directory ./public
